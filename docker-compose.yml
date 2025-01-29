@@ -3,6 +3,7 @@ services:
     build: .
     depends_on:
       - prometheus
+      # - poetry-project
     volumes:
       - .:/app:delegated
     environment:
@@ -16,6 +17,14 @@ services:
   # k6-infinite:
   #   <<: *k6-prom
   #   entrypoint: ["tail", "-f", "/dev/null"]
+
+  # # to-be-tested service
+  # poetry-project:
+  #   container_name: poetry-project
+  #   build: ./poetry-fastapi-docker
+  #   ports:
+  #     - "8000:8000"
+
   prometheus:
     image: prom/prometheus:latest
     depends_on:
